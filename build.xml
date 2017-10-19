@@ -1,0 +1,32 @@
+<project name="sudoku" basedir="." default="main">
+
+    <property name="src.dir"     value="${basedir}"/>
+    <property name="classes.server.dir.clean" value="D:/apache-tomcat-4.1.37/webapps/sudoku/WEB-INF/classes/com"/>
+	<property name="classes.server.dir" value="D:/apache-tomcat-4.1.37/webapps/sudoku/WEB-INF/classes"/>
+	<property name="classes.dir" value="D:/a/technology/eclipseExamples/sudoku1/classes"/>
+
+
+	 <path id="classpath">        
+    </path>
+
+	<!-- this is used to clean the compiled and deployed code on server -->
+	<target name="clean">
+        <delete dir="${classes.server.dir.clean}"/>
+    </target>
+
+	 <target name="compile" depends="clean">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+
+		<copy  verbose="yes" overwrite="true" todir="${classes.server.dir}">
+			<fileset dir="${classes.dir}" />
+		</copy>
+		 
+    </target>
+
+	<!-- the default target -->
+    <target name="main" depends="compile"/>  
+
+</project>
+
+
